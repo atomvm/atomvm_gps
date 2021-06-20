@@ -1,0 +1,8 @@
+_build/**
+doc/**
+.vscode/*
+examples/gps_example/rebar.lock
+examples/gps_example/_build/**
+examples/gps_example/_checkouts/**
+examples/gps_example/doc
+rebar.lock
