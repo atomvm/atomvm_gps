@@ -19,6 +19,7 @@
 #include <bif.h>
 #include <context.h>
 #include <debug.h>
+#include <esp32_sys.h>
 #include <defaultatoms.h>
 #include <globalcontext.h>
 #include <interop.h>
@@ -34,7 +35,7 @@
 // #define ENABLE_TRACE
 #include <trace.h>
 
-#include "atomvm_gps_driver.h"
+#include "atomvm_gps.h"
 #include "nmea_parser.h"
 
 
@@ -422,12 +423,12 @@ static int get_event_queue_size(Context *ctx, term config)
 // Entrypoints
 //
 
-void atomvm_gps_driver_init(GlobalContext *global)
+void atomvm_gps_init(GlobalContext *global)
 {
     esp_log_level_set(TAG, ESP_LOG_VERBOSE);
 }
 
-Context *atomvm_gps_driver_create_port(GlobalContext *global, term opts)
+Context *atomvm_gps_create_port(GlobalContext *global, term opts)
 {
     term receiver = interop_proplist_get_value(opts, make_atom(global, receiver_atom));
     term config = interop_proplist_get_value(opts, make_atom(global, config_atom));
@@ -469,6 +470,11 @@ Context *atomvm_gps_driver_create_port(GlobalContext *global, term opts)
     plfdat->receiver = receiver;
     ctx->platform_data = plfdat;
 
-    ESP_LOGI(TAG, "atomvm_gps_driver started.");
+    ESP_LOGI(TAG, "atomvm_gps started.");
     return ctx;
 }
+
+#include <sdkconfig.h>
+#ifdef CONFIG_AVM_GPS_ENABLE
+REGISTER_PORT_DRIVER(atomvm_gps, atomvm_gps_init, atomvm_gps_create_port)
+#endif

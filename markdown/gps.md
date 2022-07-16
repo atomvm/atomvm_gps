@@ -1,6 +1,27 @@
-# Programmer's Guide
+# AtomVM GPS Driver
 
 The AtomVM GPS library can be used to take readings from common GSP sensors attached to your ESP32 device.
+
+At a high level, the following functionality is supported:
+
+* Lifecycle management, via common `start/1` and `stop/1` semantics;
+* Connectivity to a GPS sensor over the UART protocol, supporting NMEA message parsing, including configuration of UART parameters;
+* Asynchronous reading GPS measurements from the GPS sensor;
+* Filtering readings to reduce overhead of message passing for unwanted fields.
+
+The AtomVM GPS library is only supported on the ESP32 platform.
+
+## Build Instructions
+
+The AtomVM GPS library is implemented as an AtomVM component, which includes some native C code that must be linked into the ESP32 AtomVM image.  In order to build and deploy this client code, you must build an AtomVM binary image.
+
+For general instructions about how to build AtomVM and include third-party components into an AtomVM image, see the [AtomVM Build Instructions](https://doc.atomvm.net/build-instructions.html).
+
+Once the AtomVM image including this component has been built, you can flash the image to your ESP32 device.  For instructions about how to flash AtomVM images to your ESP32 device, see the AtomVM [Getting Started Guide](https://doc.atomvm.net/getting-started-guide.html).
+
+Once the AtomVM image including this component has been flashed to your ESP32 device, you can then include this project into your [`rebar3`](https://www.rebar3.org) project using the [`atomvm_rebar3_plugin`](https://github.com/atomvm/atomvm_rebar3_plugin), which provides targets for building AtomVM packbeam files and flashing them to your device.
+
+## Programmer's Guide
 
 The library assumes that GPS sensors are connected to the ESP32 via the UART interface, and that the GPS sensor supports the [NMEA 0183](https://en.wikipedia.org/wiki/NMEA_0183) protocol.  Examples include boards built on the [NEO-6](https://datasheetspdf.com/pdf-file/866235/u-blox/NEO-6M/1) chipset.  The GPS sensor only needs to be connected to the RX channel on the UART interface, as messages are only sent from the GPS sensor to the ESP32.
 
@@ -9,7 +30,7 @@ More detailed information about the UART interface is available in the [IDF SDK]
 Once connected and initialized, the GPS sensor should send readings to your application, in a manner described below.  GPS readings include date and time, latitude, longitude, altitude, and speed, among other readings.  More details are provided below.
 
 
-## Lifecycle
+### Lifecycle
 
 The gps library functionality is encapsulated in an Erlang process which you can start via the `start/1` function:
 
@@ -59,7 +80,7 @@ To stop an GPS instance, use the `stop/1` function, supplying a reference to the
     %% erlang
     ok = gps:stop(GPS).
 
-## Receiving GPS Readings
+### Receiving GPS Readings
 
 When the GPS sensor delivers a reading to the application, and when a callback function is specified in the GPS configuration using the `gps_reading_handler` key, then the specified function will be called, with the GPS reading supplied as a parameter.  For example,
 
@@ -87,7 +108,9 @@ A GPS reading is a `map` that includes the following keys and values:
 
 C.f., [FreeNMEA documentation](http://freenmea.net/docs)
 
-If you would only like to receive a subset of the entries in this map in your handler, you can use the `gps_reading_filter` key in the configuration map passed to the `gps:start/1` function to enumerate the entries you would like to see, e.g.,
+If you would only like to receive a subset of the entries in this map in your handler, you can use the `gps_reading_filter` key in the configuration map passed to the `gps:start/1` function to enumerate the entries you would like to see.  Use the keys described above to _include_ the desired fields.  If no filter is specified, then _all_ fields will be delivered.  If an empty list is specified, then _no_ fields will be delivered.
+
+For example,
 
     %% erlang
     Config = #{
@@ -95,7 +118,6 @@ If you would only like to receive a subset of the entries in this map in your ha
         gps_reading_filter => [datetime, latitude, longitude, altitude, speed, valid],
         ...
     }
-
 
 ## API Reference
 

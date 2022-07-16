@@ -1,4 +1,12 @@
-menu "atomvm_gps Configuration"
+menu "ATOMVM_GPS Configuration"
+
+config AVM_ADC_ENABLE
+    bool  "Enable AtomVM ADC driver"
+    default true
+    help
+        Use this parameter to enable or disable the AtomVM ADC driver.
+
+    menu "NMEA Parser Configuration"
 
     config NMEA_PARSER_RING_BUFFER_SIZE
         int "NMEA Parser Ring Buffer Size"
@@ -20,6 +28,8 @@ menu "atomvm_gps Configuration"
         default 2
         help
             Priority of NMEA Parser task.
+
+    endmenu
 
     menu "NMEA Statement Support"
         comment "At least one statement must be selected"

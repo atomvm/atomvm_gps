@@ -215,7 +215,7 @@ start(Config) ->
 %%-----------------------------------------------------------------------------
 -spec stop(GPS::gps()) -> ok.
 stop(GPS) ->
-    gen_server:call(GPS, stop).
+    gen_server:stop(GPS).
 
 %%-----------------------------------------------------------------------------
 %% @param   GPS    the GPS instance created via `start/1'
@@ -274,7 +274,13 @@ handle_info({gps_reading, GPSReading}, State) ->
                 GPSReading,
                 maps:get(gps_reading_filter, State#state.config, undefined)
             ),
-            spawn(fun() -> Fun(Self, NewReading) end)
+            spawn(fun() -> Fun(Self, NewReading) end);
+        Pid when is_pid(Pid) ->
+            NewReading = maybe_filter_gps_reading(
+                GPSReading,
+                maps:get(gps_reading_filter, State#state.config, undefined)
+            ),
+            Pid ! {gps_reading, NewReading}
     end,
     erlang:garbage_collect(),
     {noreply, State#state{latest_reading=GPSReading}};
@@ -284,6 +290,7 @@ handle_info(Info, State) ->
 
 %% @hidden
 terminate(Reason, State) ->
+    do_stop(State#state.port),
     io:format("gps gen_server process ~p terminated with reason ~p.  State: ~p~n", [self(), Reason, State]),
     ok.
 
