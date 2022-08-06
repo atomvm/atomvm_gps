@@ -227,7 +227,7 @@ static void gps_event_handler(void *event_handler_arg, esp_event_base_t event_ba
         // TODO: make a more accurate calculation of size based on actual sats_in_view
         if (UNLIKELY(memory_ensure_free(ctx, term_map_size_in_terms(NUM_ENTRIES) + 210) != MEMORY_GC_OK)) {
             mailbox_send(target, MEMORY_ATOM);
-            return NULL;
+            return;
         }
 
         term gps_reading = gps_to_term(ctx, gps);
@@ -426,6 +426,7 @@ static int get_event_queue_size(Context *ctx, term config)
 void atomvm_gps_init(GlobalContext *global)
 {
     esp_log_level_set(TAG, ESP_LOG_VERBOSE);
+    ESP_LOGI(TAG, "AtomVM GPS driver initialized.");
 }
 
 Context *atomvm_gps_create_port(GlobalContext *global, term opts)

@@ -1,38 +1,39 @@
 menu "ATOMVM_GPS Configuration"
 
-config AVM_ADC_ENABLE
-    bool  "Enable AtomVM ADC driver"
+config AVM_GPS_ENABLE
+    bool  "Enable AtomVM GPS driver"
     default true
     help
-        Use this parameter to enable or disable the AtomVM ADC driver.
+        Use this parameter to enable or disable the AtomVM GPS driver.
 
     menu "NMEA Parser Configuration"
 
-    config NMEA_PARSER_RING_BUFFER_SIZE
-        int "NMEA Parser Ring Buffer Size"
-        range 0 2048
-        default 1024
-        help
-            Size of the ring buffer used for UART Rx channel.
+        config NMEA_PARSER_RING_BUFFER_SIZE
+            int "NMEA Parser Ring Buffer Size"
+            range 0 2048
+            default 1024
+            help
+                Size of the ring buffer used for UART Rx channel.
 
-    config NMEA_PARSER_TASK_STACK_SIZE
-        int "NMEA Parser Task Stack Size"
-        range 0 4096
-        default 2048
-        help
-            Stack size of NMEA Parser task.
+        config NMEA_PARSER_TASK_STACK_SIZE
+            int "NMEA Parser Task Stack Size"
+            range 0 4096
+            default 2048
+            help
+                Stack size of NMEA Parser task.
 
-    config NMEA_PARSER_TASK_PRIORITY
-        int "NMEA Parser Task Priority"
-        range 0 24
-        default 2
-        help
-            Priority of NMEA Parser task.
+        config NMEA_PARSER_TASK_PRIORITY
+            int "NMEA Parser Task Priority"
+            range 0 24
+            default 2
+            help
+                Priority of NMEA Parser task.
 
     endmenu
 
     menu "NMEA Statement Support"
         comment "At least one statement must be selected"
+
         config NMEA_STATEMENT_GGA
             bool "GGA Statement"
             default y
