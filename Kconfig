@@ -2,7 +2,7 @@ menu "ATOMVM_GPS Configuration"
 
 config AVM_GPS_ENABLE
     bool  "Enable AtomVM GPS driver"
-    default true
+    default y
     help
         Use this parameter to enable or disable the AtomVM GPS driver.
 
