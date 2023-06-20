@@ -21,19 +21,15 @@
 start() ->
     Config = #{
         uart_port => uart_1,
-        rx_pin => 2,
+        rx_pin => 15,
         gps_reading_filter => [datetime, latitude, longitude, altitude, speed, valid],
         gps_reading_handler => fun handle_gps_reading/2
     },
     {ok, _GPS} = gps:start(Config),
     io:format("GPS started.~n"),
 
-    loop_forever().
+    timer:sleep(infinity).
 
-loop_forever() ->
-    receive
-        halt -> halt
-    end.
 
 handle_gps_reading(_GPS, GPSReading) ->
     io:format("GPSReading: ~p~n", [GPSReading]).

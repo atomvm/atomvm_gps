@@ -6,13 +6,13 @@ The `gps_example` program illustrates integration with a common GPS sensor to ta
 
 To run this example program, you will need to connect your ESP32 device to a GSP module.  This example program assumes a development board based on the [NEO-6](https://datasheetspdf.com/pdf-file/866235/u-blox/NEO-6M/1) chipset, or equivalent.
 
-Connect the negative lead on your GPS sensor to the ground pin on your ESP32, the VCC on your GPS sensor to a +5v power source, and the TX lead on the GPS sensor to GPIO2 on your ESP32.
+Connect the negative lead on your GPS sensor to the ground pin on your ESP32, the VCC on your GPS sensor to a +5v power source, and the TX lead on the GPS sensor to GPIO15 on your ESP32.
 
                                       +-----------+
     +-----------+ gnd             neg |           |
     |           +---------------------+           +
     |   ESP32   |                     |           |
-    |           | 2                TX |           |
+    |           | 15               TX |           |
     |           +---------------------+           +
     |           |                     |           |
     |           | +5v             pos |           |

@@ -27,14 +27,16 @@
 -module(gps).
 
 -export([
-    start/1, stop/1, latest_reading/1
+    start/1, start_link/1, stop/1, latest_reading/1,
+    set_mode/2
 ]).
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
 
 -behavior(gen_server).
 
-% -define(TRACE(A, B), io:format(A, B)).
+% -define(TRACE(A, B), io:format("[atomvm_gps]" A, B)).
 -define(TRACE(A, B), ok).
+
 -define(DEFAULT_CONFIG, #{
     uart_port => uart_1,
     baud_rate => 9600,
@@ -49,7 +51,6 @@
     config,
     latest_reading
 }).
-
 
 -type gps() :: pid().
 -type uart_port() :: uart_0 | uart_1 | uart_2.
@@ -71,6 +72,7 @@
     ],
     gps_reading_handler => fun((gps_reading()) -> any())
 }.
+-type mode() :: max | eco | psm.
 
 -type year() :: non_neg_integer().
 -type month() :: 1..12.
@@ -207,7 +209,11 @@
 start(Config) ->
     gen_server:start(?MODULE, validate_config(maps:merge(?DEFAULT_CONFIG, Config)), []).
 
-%%-----------------------------------------------------------------------------
+-spec start_link(Config::config()) -> {ok, gps()} | {error, Reason::term()}.
+start_link(Config) ->
+    gen_server:start_link(?MODULE, validate_config(maps:merge(?DEFAULT_CONFIG, Config)), []).
+
+    %%-----------------------------------------------------------------------------
 %% @param   GPS    the GPS instance created via `start/1'
 %% @returns ok
 %% @doc     Stop the specified GPS.
@@ -226,6 +232,11 @@ stop(GPS) ->
 -spec latest_reading(GPS::gps()) -> gps_reading() | undefined | {error, Reason::term()}.
 latest_reading(GPS) ->
     gen_server:call(GPS, latest_reading).
+
+
+-spec set_mode(GPS :: gps(), Mode :: mode()) -> ok | {error, Reason :: term()}.
+set_mode(GPS, Mode) ->
+    gen_server:call(GPS, {set_mode, Mode}).
 
 %% ====================================================================
 %%
@@ -254,6 +265,8 @@ handle_call(stop, _From, State) ->
 
 handle_call(latest_reading, _From, State) ->
     {reply, State#state.latest_reading, State};
+handle_call({set_mode, Mode}, _From, State) ->
+    {reply, do_set_mode(State#state.port, Mode), State};
 handle_call(Request, _From, State) ->
     {reply, {error, {unknown_request, Request}}, State}.
 
@@ -282,7 +295,7 @@ handle_info({gps_reading, GPSReading}, State) ->
             ),
             Pid ! {gps_reading, NewReading}
     end,
-    erlang:garbage_collect(),
+    % erlang:garbage_collect(),
     {noreply, State#state{latest_reading=GPSReading}};
 handle_info(Info, State) ->
     io:format("Unexpected INFO message: ~p~n", [Info]),
@@ -322,18 +335,12 @@ maybe_filter_gps_reading(GPSReading, Keys) ->
 
 %% @private
 do_stop(Port) ->
-    call(Port, tini),
+    port:call(Port, tini),
     Port ! stop.
 
 %% @private
-call(Port, Msg) ->
-    Ref = make_ref(),
-    Port ! {self(), Ref, Msg},
-    receive
-        {Ref, Ret} ->
-            Ret
-    end.
-
+do_set_mode(Port, Mode) ->
+    port:call(Port, {set_mode, Mode}).
 
 %% @private
 validate_config(Config) ->

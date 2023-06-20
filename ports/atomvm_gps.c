@@ -44,53 +44,53 @@
 #define YEAR_BASE (2000) //date in GPS starts from 2000
 #define NUM_ENTRIES 10
 
-static const char *const stop_atom =                    "\x4" "stop";
-static const char *const receiver_atom =                "\x8" "receiver";
-static const char *const config_atom =                  "\x6" "config";
-static const char *const uart_port_atom =               "\x9" "uart_port";
-static const char *const uart_0_atom =                  "\x6" "uart_0";
-static const char *const uart_1_atom =                  "\x6" "uart_1";
-static const char *const uart_2_atom =                  "\x6" "uart_2";
-static const char *const rx_pin_atom =                  "\x6" "rx_pin";
-static const char *const baud_rate_atom =               "\x9" "baud_rate";
-static const char *const data_bits_atom =               "\x9" "data_bits";
-static const char *const data_bits_5_atom =             "\xB" "data_bits_5";
-static const char *const data_bits_6_atom =             "\xB" "data_bits_6";
-static const char *const data_bits_7_atom =             "\xB" "data_bits_7";
-static const char *const data_bits_8_atom =             "\xB" "data_bits_8";
-static const char *const stop_bits_atom =               "\x9" "stop_bits";
-static const char *const stop_bits_1_atom =             "\xB" "stop_bits_1";
-static const char *const stop_bits_1_5_atom =           "\xD" "stop_bits_1_5";
-static const char *const stop_bits_2_atom =             "\xB" "stop_bits_2";
-static const char *const parity_atom =                  "\x6" "parity";
-static const char *const disable_atom =                 "\x7" "disable";
-static const char *const even_atom =                    "\x4" "even";
-static const char *const odd_atom =                     "\x3" "odd";
-static const char *const event_queue_size_atom =       "\x10" "event_queue_size";
+static const char *const stop_atom =                    ATOM_STR("\x4", "stop");
+static const char *const receiver_atom =                ATOM_STR("\x8", "receiver");
+static const char *const config_atom =                  ATOM_STR("\x6", "config");
+static const char *const uart_port_atom =               ATOM_STR("\x9", "uart_port");
+static const char *const uart_0_atom =                  ATOM_STR("\x6", "uart_0");
+static const char *const uart_1_atom =                  ATOM_STR("\x6", "uart_1");
+static const char *const uart_2_atom =                  ATOM_STR("\x6", "uart_2");
+static const char *const rx_pin_atom =                  ATOM_STR("\x6", "rx_pin");
+static const char *const baud_rate_atom =               ATOM_STR("\x9", "baud_rate");
+static const char *const data_bits_atom =               ATOM_STR("\x9", "data_bits");
+static const char *const data_bits_5_atom =             ATOM_STR("\xB", "data_bits_5");
+static const char *const data_bits_6_atom =             ATOM_STR("\xB", "data_bits_6");
+static const char *const data_bits_7_atom =             ATOM_STR("\xB", "data_bits_7");
+static const char *const data_bits_8_atom =             ATOM_STR("\xB", "data_bits_8");
+static const char *const stop_bits_atom =               ATOM_STR("\x9", "stop_bits");
+static const char *const stop_bits_1_atom =             ATOM_STR("\xB", "stop_bits_1");
+static const char *const stop_bits_1_5_atom =           ATOM_STR("\xD", "stop_bits_1_5");
+static const char *const stop_bits_2_atom =             ATOM_STR("\xB", "stop_bits_2");
+static const char *const parity_atom =                  ATOM_STR("\x6", "parity");
+static const char *const disable_atom =                 ATOM_STR("\x7", "disable");
+static const char *const even_atom =                    ATOM_STR("\x4", "even");
+static const char *const odd_atom =                     ATOM_STR("\x3", "odd");
+static const char *const event_queue_size_atom =        ATOM_STR("\x10", "event_queue_size");
 
 
-static const char *const datetime_atom =                "\x8" "datetime";
-static const char *const gps_reading_atom =             "\xB" "gps_reading";
-static const char *const latitude_atom =                "\x8" "latitude";
-static const char *const longitude_atom =               "\x9" "longitude";
-static const char *const altitude_atom =                "\x8" "altitude";
-static const char *const speed_atom =                   "\x5" "speed";
-static const char *const sats_in_use_atom =             "\xB" "sats_in_use";
-static const char *const fix_atom =                     "\x3" "fix";
-static const char *const invalid_atom =                 "\x7" "invalid";
-static const char *const gps_atom =                     "\x3" "gps";
-static const char *const dgps_atom =                    "\x4" "dgps";
-static const char *const fix_mode_atom =                "\x8" "fix_mode";
-static const char *const mode_2d_atom =                 "\x7" "mode_2d";
-static const char *const mode_3d_atom =                 "\x7" "mode_3d";
-static const char *const valid_atom =                   "\x5" "valid";
-static const char *const sats_in_view_atom =            "\xC" "sats_in_view";
-static const char *const num_atom =                     "\x3" "num";
-static const char *const elevation_atom =               "\x9" "elevation";
-static const char *const azimuth_atom =                 "\x7" "azimuth";
-static const char *const snr_atom =                     "\x3" "snr";
-//                                                            0123456789ABCDEF0123456789ABCDEF
-//                                                            0               1
+static const char *const datetime_atom =                ATOM_STR("\x8", "datetime");
+static const char *const gps_reading_atom =             ATOM_STR("\xB", "gps_reading");
+static const char *const latitude_atom =                ATOM_STR("\x8", "latitude");
+static const char *const longitude_atom =               ATOM_STR("\x9", "longitude");
+static const char *const altitude_atom =                ATOM_STR("\x8", "altitude");
+static const char *const speed_atom =                   ATOM_STR("\x5", "speed");
+static const char *const sats_in_use_atom =             ATOM_STR("\xB", "sats_in_use");
+static const char *const fix_atom =                     ATOM_STR("\x3", "fix");
+static const char *const invalid_atom =                 ATOM_STR("\x7", "invalid");
+static const char *const gps_atom =                     ATOM_STR("\x3", "gps");
+static const char *const dgps_atom =                    ATOM_STR("\x4", "dgps");
+static const char *const fix_mode_atom =                ATOM_STR("\x8", "fix_mode");
+static const char *const mode_2d_atom =                 ATOM_STR("\x7", "mode_2d");
+static const char *const mode_3d_atom =                 ATOM_STR("\x7", "mode_3d");
+static const char *const valid_atom =                   ATOM_STR("\x5", "valid");
+static const char *const sats_in_view_atom =            ATOM_STR("\xC", "sats_in_view");
+static const char *const num_atom =                     ATOM_STR("\x3", "num");
+static const char *const elevation_atom =               ATOM_STR("\x9", "elevation");
+static const char *const azimuth_atom =                 ATOM_STR("\x7", "azimuth");
+static const char *const snr_atom =                     ATOM_STR("\x3", "snr");
+//                                                                       0123456789ABCDEF0123456789ABCDEF
+//                                                                       0               1
 
 
 struct platform_data {
@@ -98,69 +98,62 @@ struct platform_data {
     term receiver;
 };
 
-static term float_to_term(Context *ctx, float f)
-{
-    int integral = (int) f;
-    int fractional = (int) abs((f - integral) * 10000);
-    return port_create_tuple2(ctx, term_from_int(integral), term_from_int(fractional));
-}
-
-static term fix_to_term(Context *ctx, gps_fix_t fix)
+static term fix_to_term(GlobalContext *global, gps_fix_t fix)
 {
     switch(fix) {
         case GPS_FIX_INVALID:
-            return context_make_atom(ctx, invalid_atom);
+            return globalcontext_make_atom(global, invalid_atom);
         case GPS_FIX_GPS:
-            return context_make_atom(ctx, gps_atom);
+            return globalcontext_make_atom(global, gps_atom);
         case GPS_FIX_DGPS:
-            return context_make_atom(ctx, dgps_atom);
+            return globalcontext_make_atom(global, dgps_atom);
     }
     // should never happen
     return term_invalid_term();
 }
 
-static term fix_mode_to_term(Context *ctx, gps_fix_mode_t fix_mode)
+static term fix_mode_to_term(GlobalContext *global, gps_fix_mode_t fix_mode)
 {
     switch(fix_mode) {
         case GPS_MODE_INVALID:
-            return context_make_atom(ctx, invalid_atom);
+            return globalcontext_make_atom(global, invalid_atom);
         case GPS_MODE_2D:
-            return context_make_atom(ctx, mode_2d_atom);
+            return globalcontext_make_atom(global, mode_2d_atom);
         case GPS_MODE_3D:
-            return context_make_atom(ctx, mode_3d_atom);
+            return globalcontext_make_atom(global, mode_3d_atom);
     }
     // should never happen
     return term_invalid_term();
 }
 
-static term satellite_to_term(Context *ctx, gps_satellite_t *sat)
+static term satellite_to_term(GlobalContext *global, Heap *heap, gps_satellite_t *sat)
 {
-    term map = term_alloc_map(ctx, 4);
+    term map = term_alloc_map(4, heap);
 
-    term_set_map_assoc(map, 0, context_make_atom(ctx, num_atom), term_from_int(sat->num));
-    term_set_map_assoc(map, 1, context_make_atom(ctx, elevation_atom), term_from_int(sat->elevation));
-    term_set_map_assoc(map, 2, context_make_atom(ctx, azimuth_atom), term_from_int(sat->azimuth));
-    term_set_map_assoc(map, 3, context_make_atom(ctx, snr_atom), term_from_int(sat->snr));
+    term_set_map_assoc(map, 0, globalcontext_make_atom(global, num_atom), term_from_int(sat->num));
+    term_set_map_assoc(map, 1, globalcontext_make_atom(global, elevation_atom), term_from_int(sat->elevation));
+    term_set_map_assoc(map, 2, globalcontext_make_atom(global, azimuth_atom), term_from_int(sat->azimuth));
+    term_set_map_assoc(map, 3, globalcontext_make_atom(global, snr_atom), term_from_int(sat->snr));
 
     return map;
 }
 
-static term sats_in_use_to_term(Context *ctx, uint8_t sats_in_use, uint8_t *sat_ids)
+static term sats_in_use_to_term(Heap *heap, uint8_t sats_in_use, uint8_t *sat_ids)
 {
     term ret = term_nil();
 
     for (int i = sats_in_use - 1;  i >= 0;  --i) {
-        ret = term_list_prepend(term_from_int(sat_ids[i]), ret, ctx);
+        ret = term_list_prepend(term_from_int(sat_ids[i]), ret, heap);
     }
     return ret;
 }
 
-static term sats_in_view_to_term(Context *ctx, uint8_t sats_in_view, gps_satellite_t *sats)
+static term sats_in_view_to_term(GlobalContext *global, Heap *heap, uint8_t sats_in_view, gps_satellite_t *sats)
 {
     term ret = term_nil();
 
     for (int i = sats_in_view - 1;  i >= 0;  --i) {
-        ret = term_list_prepend(satellite_to_term(ctx, sats + i), ret, ctx);
+        ret = term_list_prepend(satellite_to_term(global, heap, sats + i), ret, heap);
     }
     return ret;
 }
@@ -170,80 +163,107 @@ static term bool_to_term(bool b)
     return b ? TRUE_ATOM : FALSE_ATOM;
 }
 
-static term gps_to_term(Context *ctx, gps_t *gps)
+static term gps_to_term(GlobalContext *global, Heap *heap, gps_t *gps)
 {
-    term date = port_create_tuple3(ctx,
+    term date = port_heap_create_tuple3(
+        heap,
         term_from_int(gps->date.year + YEAR_BASE),
         term_from_int(gps->date.month),
         term_from_int(gps->date.day)
     );
-    term time = port_create_tuple3(ctx,
+    term time = port_heap_create_tuple3(
+        heap,
         term_from_int(gps->tim.hour),
         term_from_int(gps->tim.minute),
         term_from_int(gps->tim.second)
     );
-    term datetime = port_create_tuple2(ctx, date, time);
+    term datetime = port_heap_create_tuple2(heap, date, time);
 
-    term map = term_alloc_map(ctx, NUM_ENTRIES);
-    term_set_map_assoc(map, 0, context_make_atom(ctx, datetime_atom), datetime);
-    term_set_map_assoc(map, 1, context_make_atom(ctx, latitude_atom), float_to_term(ctx, gps->latitude));
-    term_set_map_assoc(map, 2, context_make_atom(ctx, longitude_atom), float_to_term(ctx, gps->longitude));
-    term_set_map_assoc(map, 3, context_make_atom(ctx, altitude_atom), float_to_term(ctx, gps->altitude));
-    term_set_map_assoc(map, 4, context_make_atom(ctx, speed_atom), float_to_term(ctx, gps->speed));
-    term_set_map_assoc(map, 5, context_make_atom(ctx, sats_in_use_atom), sats_in_use_to_term(ctx, gps->sats_in_use, gps->sats_id_in_use));
-    term_set_map_assoc(map, 6, context_make_atom(ctx, fix_atom), fix_to_term(ctx, gps->fix));
-    term_set_map_assoc(map, 7, context_make_atom(ctx, fix_mode_atom), fix_mode_to_term(ctx, gps->fix_mode));
-    term_set_map_assoc(map, 8, context_make_atom(ctx, valid_atom), bool_to_term(gps->valid));
-    term_set_map_assoc(map, 9, context_make_atom(ctx, sats_in_view_atom), sats_in_view_to_term(ctx, gps->sats_in_view, gps->sats_desc_in_view));
+    term map = term_alloc_map(NUM_ENTRIES, heap);
+    term_set_map_assoc(map, 0, globalcontext_make_atom(global, datetime_atom), datetime);
+    term_set_map_assoc(map, 1, globalcontext_make_atom(global, latitude_atom), term_from_float(gps->latitude, heap));
+    term_set_map_assoc(map, 2, globalcontext_make_atom(global, longitude_atom), term_from_float(gps->longitude, heap));
+    term_set_map_assoc(map, 3, globalcontext_make_atom(global, altitude_atom), term_from_float(gps->altitude, heap));
+    term_set_map_assoc(map, 4, globalcontext_make_atom(global, speed_atom), term_from_float(gps->speed, heap));
+    term_set_map_assoc(map, 5, globalcontext_make_atom(global, sats_in_use_atom), sats_in_use_to_term(heap, gps->sats_in_use, gps->sats_id_in_use));
+    term_set_map_assoc(map, 6, globalcontext_make_atom(global, fix_atom), fix_to_term(global, gps->fix));
+    term_set_map_assoc(map, 7, globalcontext_make_atom(global, fix_mode_atom), fix_mode_to_term(global, gps->fix_mode));
+    term_set_map_assoc(map, 8, globalcontext_make_atom(global, valid_atom), bool_to_term(gps->valid));
+    term_set_map_assoc(map, 9, globalcontext_make_atom(global, sats_in_view_atom), sats_in_view_to_term(global, heap, gps->sats_in_view, gps->sats_desc_in_view));
 
     return map;
 }
 
 static void gps_event_handler(void *event_handler_arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
+    // TODO ctx cannot be passed in
     Context *ctx = (Context *) event_handler_arg;
     struct platform_data *plfdat = (struct platform_data *) ctx->platform_data;
+    GlobalContext *global = ctx->global;
 
-    int pid = term_to_local_process_id(plfdat->receiver);
-    Context *target = globalcontext_get_process(ctx->global, pid);
+    int receiver = plfdat->receiver;
+
+    Context *target = globalcontext_get_process_lock(global, term_to_local_process_id(receiver));
 
     gps_t *gps = NULL;
     switch (event_id) {
-    case GPS_UPDATE:
-        gps = (gps_t *)event_data;
 
-        // date_time: pair of 3-ary tuples = 4*2 + 3 = 11
-        // latitude: pair = 3
-        // longitude: pair = 3
-        // altitude: pair = 3
-        // speed: pair = 3
-        // sats_in_use: list[int (max=16)] = 12*2 = 24
-        // sats_in_view: list[4-tuple of int (max=16)] = 16*10 = 160
-        // fix: atom = 0
-        // fix_mode: atom = 0
-        // valid: atom = 0
-        // {gps_reading, GPSReading} = 3
-        // total: 210
-        // TODO: make a more accurate calculation of size based on actual sats_in_view
-        if (UNLIKELY(memory_ensure_free(ctx, term_map_size_in_terms(NUM_ENTRIES) + 210) != MEMORY_GC_OK)) {
-            mailbox_send(target, MEMORY_ATOM);
-            return;
-        }
+        case GPS_UPDATE:
+            gps = (gps_t *) event_data;
 
-        term gps_reading = gps_to_term(ctx, gps);
-        term msg = port_create_tuple2(ctx,
-            context_make_atom(ctx, gps_reading_atom),
-            gps_reading
-        );
+            // date_time: pair of 3-ary tuples = 4*2 + 3 = 11
+            // latitude: pair = 3
+            // longitude: pair = 3
+            // altitude: pair = 3
+            // speed: pair = 3
+            // sats_in_use: list[int (max=16)] = 12*2 = 24
+            // sats_in_view: list[4-tuple of int (max=16)] = 16*10 = 160
+            // fix: atom = 0
+            // fix_mode: atom = 0
+            // valid: atom = 0
+            // {gps_reading, GPSReading} = 3
+            // total: 210
+            // TODO: make a more accurate calculation of size based on actual sats_in_view
 
-        mailbox_send(target, msg);
+            size_t requested_size = term_map_size_in_terms(NUM_ENTRIES) +
+                TUPLE_SIZE(2) + 2 * TUPLE_SIZE(3) + // date_time
+                FLOAT_SIZE + // latitude
+                FLOAT_SIZE + // longitude
+                FLOAT_SIZE + // altitude
+                FLOAT_SIZE + // speed
+                24 + // sats_in_use
+                160 + // sats_in_view
+                TUPLE_SIZE(2); // gps reading
 
-        break;
-    case GPS_UNKNOWN:
-        ESP_LOGW(TAG, "Unknown statement:%s", (char *)event_data);
-        break;
-    default:
-        break;
+            Heap heap;
+            if (UNLIKELY(memory_init_heap(&heap, requested_size) != MEMORY_GC_OK)) {
+                ESP_LOGW(TAG, "Failed to allocate memory: %s:%i.\n", __FILE__, __LINE__);
+
+                // TODO what do do here?
+
+            } else {
+
+                term gps_reading = gps_to_term(global, &heap, gps);
+                term msg = port_heap_create_tuple2(
+                    &heap,
+                    globalcontext_make_atom(global, gps_reading_atom),
+                    gps_reading
+                );
+
+                port_send_message_nolock(global, receiver, msg);
+                memory_destroy_heap(&heap, global);
+            }
+
+            globalcontext_get_process_unlock(global, target);
+
+            break;
+
+        case GPS_UNKNOWN:
+            ESP_LOGW(TAG, "Unknown statement:%s", (char *)event_data);
+            break;
+
+        default:
+            break;
     }
 }
 
@@ -255,61 +275,56 @@ static void do_stop(Context *ctx)
 
     TRACE(TAG ": do_stop\n");
     nmea_parser_deinit(parser);
-    scheduler_terminate(ctx);
-    free(plfdat);
 }
 
 
-static void consume_mailbox(Context *ctx)
+static NativeHandlerResult consume_mailbox(Context *ctx)
 {
-    Message *message = mailbox_dequeue(ctx);
+    Message *message = mailbox_first(&ctx->mailbox);
     term msg = message->message;
     term pid = term_get_tuple_element(msg, 0);
+    int process_id = term_to_local_process_id(pid);
     term ref = term_get_tuple_element(msg, 1);
     uint64_t ref_ticks = term_to_ref_ticks(ref);
     term req = term_get_tuple_element(msg, 2);
 
-    int local_process_id = term_to_local_process_id(pid);
-    Context *target = globalcontext_get_process(ctx->global, local_process_id);
-
-    term ret = ERROR_ATOM;
     if (term_is_atom(req)) {
-        if (req == context_make_atom(ctx, stop_atom)) {
+        if (globalcontext_is_term_equal_to_atom_string(ctx->global, req, stop_atom)) {
             do_stop(ctx);
-            ret = OK_ATOM;
+            return NativeTerminate;
         }
     }
 
-    mailbox_destroy_message(message);
-
-    if (UNLIKELY(memory_ensure_free(ctx, 3 + 2) != MEMORY_GC_OK)) {
-        mailbox_send(target, MEMORY_ATOM);
+    // {Ref :: reference(), ok}
+    term ret_msg = term_invalid_term();
+    if (UNLIKELY(memory_ensure_free(ctx, TUPLE_SIZE(2) + REF_SIZE) != MEMORY_GC_OK)) {
+       ret_msg = OUT_OF_MEMORY_ATOM;
     } else {
-        term ret_msg = port_create_tuple2(ctx, term_from_ref_ticks(ref_ticks, ctx), ret);
-        mailbox_send(target, ret_msg);
+        ret_msg = port_create_tuple2(ctx, term_from_ref_ticks(ref_ticks, &ctx->heap), OK_ATOM);
     }
-}
 
+    globalcontext_send_message(ctx->global, process_id, ret_msg);
+    mailbox_remove_message(&ctx->mailbox, &ctx->heap);
 
-static term make_atom(GlobalContext *global, const char *string)
-{
-    int global_atom_index = globalcontext_insert_atom(global, (AtomString) string);
-    return term_from_atom_index(global_atom_index);
+    return NativeContinue;
 }
 
 
 static uart_port_t get_uart_port(Context *ctx, term config)
 {
-    term uart_port = interop_map_get_value_default(
-        ctx, config, context_make_atom(ctx, uart_port_atom), context_make_atom(ctx, uart_1_atom)
+    term uart_port = interop_kv_get_value(
+        config, uart_port_atom, ctx->global
     );
-    if (uart_port == context_make_atom(ctx, uart_0_atom)) {
-        return UART_NUM_0;
-    }
-    if (uart_port == context_make_atom(ctx, uart_1_atom)) {
+    if (term_is_invalid_term(uart_port)) {
         return UART_NUM_1;
     }
-    if (uart_port == context_make_atom(ctx, uart_2_atom)) {
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, uart_port, uart_0_atom)) {
+        return UART_NUM_0;
+    }
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, uart_port, uart_1_atom)) {
+        return UART_NUM_1;
+    }
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, uart_port, uart_2_atom)) {
         return UART_NUM_2;
     }
     ESP_LOGE(TAG, "Invalid uart_port.");
@@ -317,11 +332,9 @@ static uart_port_t get_uart_port(Context *ctx, term config)
 }
 
 
-static int get_integer_value(Context *ctx, term config, term key, int default_value)
+static int get_integer_value(Context *ctx, term config, AtomString key, int default_value)
 {
-    term value = interop_map_get_value_default(
-        ctx, config, key, term_invalid_term()
-    );
+    term value = interop_kv_get_value(config, key, ctx->global);
     if (term_is_invalid_term(value)) {
         return default_value;
     } else if (term_is_integer(value)) {
@@ -334,9 +347,7 @@ static int get_integer_value(Context *ctx, term config, term key, int default_va
 
 static int get_rx_pin(Context *ctx, term config)
 {
-    term rx_pin = interop_map_get_value_default(
-        ctx, config, context_make_atom(ctx, rx_pin_atom), term_invalid_term()
-    );
+    term rx_pin = interop_kv_get_value(config, rx_pin_atom, ctx->global);
     if (term_is_invalid_term(rx_pin)) {
         return UART_PIN_NO_CHANGE;
     } else if (term_is_integer(rx_pin)) {
@@ -349,25 +360,25 @@ static int get_rx_pin(Context *ctx, term config)
 
 static int get_baud_rate(Context *ctx, term config)
 {
-    return get_integer_value(ctx, config, context_make_atom(ctx, baud_rate_atom), 9600);
+    return get_integer_value(ctx, config, baud_rate_atom, 9600);
 }
 
 
 static uart_word_length_t get_data_bits(Context *ctx, term config)
 {
-    term data_bits = interop_map_get_value_default(
-        ctx, config, context_make_atom(ctx, data_bits_atom), context_make_atom(ctx, data_bits_8_atom)
+    term data_bits = interop_kv_get_value_default(
+        config, data_bits_atom, globalcontext_make_atom(ctx->global, data_bits_8_atom), ctx->global
     );
-    if (data_bits == context_make_atom(ctx, data_bits_5_atom)) {
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, data_bits, data_bits_5_atom)) {
         return UART_DATA_5_BITS;
     }
-    if (data_bits == context_make_atom(ctx, data_bits_6_atom)) {
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, data_bits, data_bits_6_atom)) {
         return UART_DATA_6_BITS;
     }
-    if (data_bits == context_make_atom(ctx, data_bits_7_atom)) {
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, data_bits, data_bits_7_atom)) {
         return UART_DATA_7_BITS;
     }
-    if (data_bits == context_make_atom(ctx, data_bits_8_atom)) {
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, data_bits, data_bits_8_atom)) {
         return UART_DATA_8_BITS;
     }
     ESP_LOGE(TAG, "Invalid data_bits.");
@@ -377,16 +388,16 @@ static uart_word_length_t get_data_bits(Context *ctx, term config)
 
 static uart_stop_bits_t get_stop_bits(Context *ctx, term config)
 {
-    term stop_bits = interop_map_get_value_default(
-        ctx, config, context_make_atom(ctx, stop_bits_atom), context_make_atom(ctx, stop_bits_1_atom)
+    term stop_bits = interop_kv_get_value_default(
+        config, stop_bits_atom, globalcontext_make_atom(ctx->global, stop_bits_1_atom), ctx->global
     );
-    if (stop_bits == context_make_atom(ctx, stop_bits_1_atom)) {
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, stop_bits, stop_bits_1_atom)) {
         return UART_STOP_BITS_1;
     }
-    if (stop_bits == context_make_atom(ctx, stop_bits_1_5_atom)) {
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, stop_bits, stop_bits_1_5_atom)) {
         return UART_STOP_BITS_1_5;
     }
-    if (stop_bits == context_make_atom(ctx, stop_bits_2_atom)) {
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, stop_bits, stop_bits_2_atom)) {
         return UART_STOP_BITS_2;
     }
     ESP_LOGE(TAG, "Invalid stop_bits.");
@@ -396,16 +407,16 @@ static uart_stop_bits_t get_stop_bits(Context *ctx, term config)
 
 static uart_parity_t get_parity(Context *ctx, term config)
 {
-    term parity = interop_map_get_value_default(
-        ctx, config, context_make_atom(ctx, parity_atom), context_make_atom(ctx, disable_atom)
+    term parity = interop_kv_get_value_default(
+        config, parity_atom, globalcontext_make_atom(ctx->global, disable_atom), ctx->global
     );
-    if (parity == context_make_atom(ctx, disable_atom)) {
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, parity, disable_atom)) {
         return UART_PARITY_DISABLE;
     }
-    if (parity == context_make_atom(ctx, even_atom)) {
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, parity, even_atom)) {
         return UART_PARITY_EVEN;
     }
-    if (parity == context_make_atom(ctx, odd_atom)) {
+    if (globalcontext_is_term_equal_to_atom_string(ctx->global, parity, odd_atom)) {
         return UART_PARITY_ODD;
     }
     ESP_LOGE(TAG, "Invalid parity.");
@@ -415,7 +426,7 @@ static uart_parity_t get_parity(Context *ctx, term config)
 
 static int get_event_queue_size(Context *ctx, term config)
 {
-    return get_integer_value(ctx, config, context_make_atom(ctx, event_queue_size_atom), 16);
+    return get_integer_value(ctx, config, event_queue_size_atom, 16);
 }
 
 
@@ -431,9 +442,8 @@ void atomvm_gps_init(GlobalContext *global)
 
 Context *atomvm_gps_create_port(GlobalContext *global, term opts)
 {
-    term receiver = interop_proplist_get_value(opts, make_atom(global, receiver_atom));
-    term config = interop_proplist_get_value(opts, make_atom(global, config_atom));
-
+    term receiver = interop_kv_get_value(opts, receiver_atom, global);
+    term config = interop_kv_get_value(opts, config_atom, global);
 
     Context *ctx = context_new(global);
     ctx->native_handler = consume_mailbox;
@@ -477,5 +487,5 @@ Context *atomvm_gps_create_port(GlobalContext *global, term opts)
 
 #include <sdkconfig.h>
 #ifdef CONFIG_AVM_GPS_ENABLE
-REGISTER_PORT_DRIVER(atomvm_gps, atomvm_gps_init, atomvm_gps_create_port)
+REGISTER_PORT_DRIVER(atomvm_gps, atomvm_gps_init, NULL, atomvm_gps_create_port)
 #endif
