@@ -153,7 +153,7 @@ typedef void *nmea_parser_handle_t;
     {                                      \
         .uart = {                          \
             .uart_port = UART_NUM_1,       \
-            .rx_pin = 2,                   \
+            .rx_pin = CONFIG_NMEA_PARSER_UART_RXD,                   \
             .baud_rate = 9600,             \
             .data_bits = UART_DATA_8_BITS, \
             .parity = UART_PARITY_DISABLE, \
