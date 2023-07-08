@@ -682,7 +682,8 @@ nmea_parser_handle_t nmea_parser_init(const nmea_parser_config_t *config)
         .data_bits = config->uart.data_bits,
         .parity = config->uart.parity,
         .stop_bits = config->uart.stop_bits,
-        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE
+        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
+        .source_clk = UART_SCLK_DEFAULT
     };
     if (uart_param_config(esp_gps->uart_port, &uart_config) != ESP_OK) {
         ESP_LOGE(GPS_TAG, "config uart parameter failed");
