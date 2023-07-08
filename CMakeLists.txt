@@ -26,7 +26,7 @@ set(ATOMVM_GPS_COMPONENT_SRCS
 idf_component_register(
     SRCS ${ATOMVM_GPS_COMPONENT_SRCS}
     INCLUDE_DIRS "ports/include"
-    PRIV_REQUIRES "libatomvm" "avm_sys" "driver"
+    PRIV_REQUIRES "esp_event" "libatomvm" "avm_sys" "driver"
 )
 
 idf_build_set_property(
