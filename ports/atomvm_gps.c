@@ -260,6 +260,9 @@ static void gps_event_handler(void *event_handler_arg, esp_event_base_t event_ba
 
         case GPS_UNKNOWN:
             ESP_LOGW(TAG, "Unknown statement:%s", (char *)event_data);
+
+            globalcontext_get_process_unlock(global, target);
+
             break;
 
         default:
