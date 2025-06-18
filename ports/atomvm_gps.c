@@ -50,7 +50,9 @@ static const char *const config_atom =                  ATOM_STR("\x6", "config"
 static const char *const uart_port_atom =               ATOM_STR("\x9", "uart_port");
 static const char *const uart_0_atom =                  ATOM_STR("\x6", "uart_0");
 static const char *const uart_1_atom =                  ATOM_STR("\x6", "uart_1");
-static const char *const uart_2_atom =                  ATOM_STR("\x6", "uart_2");
+#if defined(CONFIG_IDF_TARGET_ESP32) || defined(CONFIG_IDF_TARGET_ESP32S3)
+  static const char *const uart_2_atom = ATOM_STR("\x6", "uart_2");
+#endif
 static const char *const rx_pin_atom =                  ATOM_STR("\x6", "rx_pin");
 static const char *const baud_rate_atom =               ATOM_STR("\x9", "baud_rate");
 static const char *const data_bits_atom =               ATOM_STR("\x9", "data_bits");
@@ -334,9 +336,11 @@ static uart_port_t get_uart_port(Context *ctx, term config)
     if (globalcontext_is_term_equal_to_atom_string(ctx->global, uart_port, uart_1_atom)) {
         return UART_NUM_1;
     }
+#if defined(CONFIG_IDF_TARGET_ESP32) || defined(CONFIG_IDF_TARGET_ESP32S3)
     if (globalcontext_is_term_equal_to_atom_string(ctx->global, uart_port, uart_2_atom)) {
         return UART_NUM_2;
     }
+#endif
     ESP_LOGE(TAG, "Invalid uart_port.");
     return UART_NUM_MAX;
 }
